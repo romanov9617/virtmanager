@@ -36,3 +36,19 @@ repos:
   - id: mypy
     additional_dependencies:
     - types-requests
+
+- repo: local
+  hooks:
+  - id: poetry-update
+    name: poetry-update
+    entry: bash -c 'poetry update --lock'
+    language: system
+    types: [python]
+    pass_filenames: false
+
+  - id: poetry-export
+    name: poetry-export
+    entry: bash -c 'poetry export -f requirements.txt -o requirements.txt --without-hashes'
+    language: system
+    types: [python]
+    pass_filenames: false
