@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "virtmanager"
+version = "0.1.0"
+description = ""
+authors = ["romanov9617 <romanov9617@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+asyncio = "^3.4.3"
+asyncpg = "^0.29.0"
+click = "^8.1.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

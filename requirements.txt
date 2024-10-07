@@ -1,0 +1,4 @@
+asyncio==3.4.3 ; python_version >= "3.12" and python_version < "4.0"
+asyncpg==0.29.0 ; python_version >= "3.12" and python_version < "4.0"
+click==8.1.7 ; python_version >= "3.12" and python_version < "4.0"
+colorama==0.4.6 ; python_version >= "3.12" and python_version < "4.0" and platform_system == "Windows"
