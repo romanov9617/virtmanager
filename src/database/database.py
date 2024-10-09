@@ -4,8 +4,9 @@ from __future__ import annotations
 
 import aiofiles
 import asyncpg
-import enums
-from config import Settings, settings
+
+from src import enums
+from src.config import Settings, settings
 
 
 class DataBaseManager:
@@ -74,7 +75,7 @@ class DataBaseManager:
         username: str,
         password: str,
         salt: str,
-        is_superuser: enums.SuperUserEnum = enums.SuperUserEnum.USER.value,
+        is_superuser: enums.SuperUserEnum = enums.SuperUserEnum.USER,
     ) -> None:
         """Create new user in database.
 
@@ -91,7 +92,7 @@ class DataBaseManager:
         )
         await conn.close()
 
-    async def get_user(self, username: str) -> dict[str, str] | None:
+    async def get_user_by_username(self, username: str) -> dict[str, str] | None:
         """Get user from database.
 
         Args:
@@ -101,16 +102,18 @@ class DataBaseManager:
             dict[str, str] | None: user data
         """
         conn = await asyncpg.connect(self._config.DB_URL)
-        get_user_query = await self._read_file("src/database/queries/get_user.sql")
+        get_user_query = await self._read_file(
+            "src/database/queries/get_user_by_username.sql"
+        )
         user = await conn.fetchrow(get_user_query, username)
         await conn.close()
-        return dict(user)
+        return user
 
     async def create_machine(
         self,
         name: str,
         ip: str,
-        is_enabled: enums.EnableStatus = enums.EnableStatus.ENABLED.value,
+        is_enabled: enums.EnableStatus = enums.EnableStatus.ENABLED,
     ) -> None:
         """Create new machine in database.
 

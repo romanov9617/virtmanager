@@ -17,6 +17,8 @@ py-bcrypt = "^0.4"
 pydantic-settings = "^2.5.2"
 aiofiles = "^24.1.0"
 mypy = "^1.11.2"
+pytest-asyncio = "^0.24.0"
+logger = "^1.4"
 
 
 [build-system]
@@ -26,7 +28,10 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.mypy]
 python_version = "3.12"
+disable_error_code = "import-untyped"
 warn_unused_configs = true
+
+[tool.mypy.aiofiles]
 ignore_missing_imports = true
 
 [tool.ruff]
@@ -45,3 +50,13 @@ select = ["ALL"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
+
+[tool.pytest.ini_options]
+addopts = "-vvs --cov=. --cov-report=term-missing --cov-report=html"
+testpaths = [
+    "tests",
+]
+pythonpath = [
+    ".",
+]
+asyncio_mode = "auto"

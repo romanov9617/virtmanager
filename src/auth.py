@@ -4,6 +4,9 @@ from __future__ import annotations
 
 import bcrypt
 
+import src.exceptions as custom_exceptions
+from src.database.database import DataBaseManager
+
 
 class Encryptor:
     """Class for encrypting passwords.
@@ -24,6 +27,8 @@ class Encryptor:
         Returns:
             str: hashed password for database
         """
+        if not password:
+            raise custom_exceptions.PasswordDoesNotPresentError
         salt = salt or bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
         return hashed_password.encode("utf-8")
@@ -39,6 +44,8 @@ class Encryptor:
         Returns:
             bool: True if password is correct, else False
         """
+        if not password:
+            raise custom_exceptions.PasswordDoesNotPresentError
         return bcrypt.checkpw(password.encode("utf-8"), hashed_password)
 
 
@@ -52,8 +59,9 @@ class Authenticator:
     def __init__(self) -> None:
         """Initialize authenticator."""
         self.encryptor = Encryptor()
+        self.db_manager = DataBaseManager()
 
-    def authenticate(self, username: str, password: str) -> bool:
+    async def authenticate(self, username: str, password: str) -> bool:
         """Check if user exists and password is correct.
 
         Args:
@@ -63,7 +71,13 @@ class Authenticator:
         Returns:
             bool: True if user exists and password is correct, else False
         """
-        return bool(username and password)
+        user = await self._get_user_by_username(username)
+        if user:
+            return self.encryptor.check_password(password, user["password"])
+        return False
 
-    def _get_user_by_username(self, username: str) -> dict[str, str] | None:
-        pass
+    async def _get_user_by_username(self, username: str) -> dict[str, str] | None:
+        user = await self.db_manager.get_user_by_username(username)
+        if user:
+            return dict(user)
+        raise custom_exceptions.UserNotFoundError(username)
