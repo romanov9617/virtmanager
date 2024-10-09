@@ -19,6 +19,7 @@ aiofiles = "^24.1.0"
 mypy = "^1.11.2"
 pytest-asyncio = "^0.24.0"
 logger = "^1.4"
+pydantic = "^2.9.2"
 
 
 [build-system]
@@ -31,8 +32,6 @@ python_version = "3.12"
 disable_error_code = "import-untyped"
 warn_unused_configs = true
 
-[tool.mypy.aiofiles]
-ignore_missing_imports = true
 
 [tool.ruff]
 src = ["virtmanager"]

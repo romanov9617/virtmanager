@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import bcrypt
 
-import src.exceptions as custom_exceptions
-from src.database.database import DataBaseManager
+from src.database.manager import Manager
+from src.exceptions import auth as custom_exceptions
 
 
 class Encryptor:
@@ -59,7 +59,7 @@ class Authenticator:
     def __init__(self) -> None:
         """Initialize authenticator."""
         self.encryptor = Encryptor()
-        self.db_manager = DataBaseManager()
+        self.db_manager = Manager()
 
     async def authenticate(self, username: str, password: str) -> bool:
         """Check if user exists and password is correct.

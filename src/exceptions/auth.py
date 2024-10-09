@@ -1,4 +1,4 @@
-"""Module for exceptions."""
+"""Exceptions that can be raised in `auth` module."""
 
 
 class UserNotFoundError(Exception):
