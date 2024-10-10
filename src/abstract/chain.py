@@ -12,7 +12,7 @@ it will be able to replace FastAPI dependency mechanism.
 from __future__ import annotations
 
 import abc
-from typing import Any, Self
+from typing import Any, Callable, Self
 
 
 class Handler(abc.ABC):
@@ -43,6 +43,11 @@ class Handler(abc.ABC):
             if handle correctly, else - None
         """
 
+    @property
+    @abc.abstractmethod
+    def command_should_pass(self) -> dict[str | None, Callable | Self]:
+        """Abstract method for command should pass."""
+
 
 class BaseHandler(Handler):
     """Base handler class.
@@ -66,7 +71,8 @@ class BaseHandler(Handler):
         """
         self._next_handler = handler
 
-    async def handle(self, request: Any) -> Any | None:  # noqa: ANN401
+    @abc.abstractmethod
+    async def handle(self, request: str | None = None) -> str | None:
         """Basic handle method.
 
         If there is next Handler - pass it to him,
@@ -81,3 +87,13 @@ class BaseHandler(Handler):
         if self._next_handler:
             return await self._next_handler.handle(request)
         return None
+
+    @property
+    @abc.abstractmethod
+    def command_should_pass(self) -> dict[str | None, Callable | Self]:
+        """Get command should pass."""
+        return {}
+
+    def _pre_process_request(self, request: str) -> str | list[str]:
+        """Pre process request."""
+        return request

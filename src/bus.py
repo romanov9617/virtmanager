@@ -5,7 +5,7 @@ import socket
 
 from logger import logger
 
-from src.machine import Machine
+from src.machine.product import Machine
 
 
 class BusInterface(abc.ABC):

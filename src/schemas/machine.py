@@ -6,7 +6,10 @@ Memory
 HardDrive.
 """
 
-from datetime import datetime
+from __future__ import annotations
+
+from datetime import datetime  # noqa: TCH003
+from uuid import UUID  # noqa: TCH003
 
 import pydantic
 
@@ -46,5 +49,22 @@ class MachineSchemaBase(pydantic.BaseModel):
     allias: str
     is_enabled: bool
     ip: str
+    port: int
     created_at: datetime
-    updated_at: datetime
+    updated_at: datetime | None = None
+
+
+class MachineCreateSchema(MachineSchemaBase):
+    """Pydantic Machine schema to create."""
+
+    processors: list[UUID] = []
+    memories: list[UUID] = []
+    hard_drives: list[UUID] = []
+
+
+class MachineReadSchema(MachineSchemaBase):
+    """Pydantic Machine schema to read."""
+
+    processors: list[ProcessorSchemaBase] = []
+    memories: list[MemorySchemaBase] = []
+    hard_drives: list[HardDriveSchemaBase] = []

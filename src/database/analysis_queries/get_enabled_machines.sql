@@ -1,3 +1,3 @@
 SELECT id, allias, ip
-FROM machines
+FROM public.machine
 WHERE is_enabled is true;

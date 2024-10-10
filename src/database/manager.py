@@ -104,20 +104,13 @@ class Manager(DatabaseBase):
         await conn.close()
         return user
 
-    async def create_machine(
-        self,
-        name: str,
-        ip: str,
-        is_enabled: enums.EnableStatus = enums.EnableStatus.ENABLED,
-    ) -> None:
+    async def create_machine(self, *args: list[str]) -> None:
         """Create new machine in database.
 
         Args:
-            name (str): machine name
-            ip (str): machine IP
-            is_enabled (EnableStatus, optional): machine enable status.
-            Defaults to EnableStatus.ENABLED.
+            *args (list[str]): machine data
         """
         conn = await asyncpg.connect(self._config.DB_URL)
         create_machine_query = await self._read_file("create_machine.sql")
-        await conn.execute(create_machine_query, name, is_enabled.value, ip)
+        await conn.execute(create_machine_query, *args)
+        await conn.close()

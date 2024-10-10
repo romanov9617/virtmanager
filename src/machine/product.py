@@ -9,8 +9,6 @@ from __future__ import annotations
 import abc
 import socket
 
-from logger import logger
-
 
 class MachineInterface(abc.ABC):
     """Abstract class for machine."""
@@ -27,19 +25,17 @@ class MachineInterface(abc.ABC):
 class Machine(MachineInterface):
     """Class for machine."""
 
-    LAST_USED_PORT = 7100
-
-    def __init__(self, allias: str, ip: str) -> None:
+    def __init__(self, allias: str, ip: str, port: int) -> None:
         """Initialize machine.
 
         Args:
             allias (str): machine name
             ip (str): machine IP address
+            port (int): machine port
         """
         self.allias = allias
         self.ip = ip
-        Machine.LAST_USED_PORT += 1
-        self.port = Machine.LAST_USED_PORT
+        self.port = port
         self.os: str | None = None
 
     def __str__(self) -> str:
@@ -50,14 +46,15 @@ class Machine(MachineInterface):
         """Base method for listning from server."""
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.bind((self.ip, self.port))
-            s.listen()
-            conn, addr = s.accept()
-            with conn:
-                logger.info(f"Connected by {addr}")
-                while True:
+            while True:
+                s.listen()
+                conn, addr = s.accept()
+                with conn:
+                    print(f"Connected by {addr}")
                     data = conn.recv(1024)
-                    logger.info(f"Received {data!r}")
-                    self.process_data(data, conn)
+                    if data:
+                        print(f"Received {data!r}")
+                        self.process_data(data, conn)
 
     def process_data(self, data: bytes, conn: socket.socket) -> None:
         """Basic method for processing data from server.
@@ -74,14 +71,15 @@ class Machine(MachineInterface):
 class UbuntuMachine(Machine):
     """Class for Ubuntu machine."""
 
-    def __init__(self, allias: str, ip: str) -> None:
+    def __init__(self, allias: str, ip: str, port: int) -> None:
         """Initialize Ubuntu machine.
 
         Args:
             allias (str): name of machine
             ip (str): machine IP address
+            port (int): machine port
         """
-        super().__init__(allias, ip)
+        super().__init__(allias, ip, port)
         self.os = "Ubuntu"
 
     def process_data(self, data: bytes, conn: socket.socket) -> None:
@@ -99,14 +97,15 @@ class UbuntuMachine(Machine):
 class WindowsMachine(Machine):
     """Class for Windows machine."""
 
-    def __init__(self, allias: str, ip: str) -> None:
+    def __init__(self, allias: str, ip: str, port: int) -> None:
         """Initialize Windows machine.
 
         Args:
             allias (str): name of machine
             ip (str): machine IP address
+            port (int): machine port
         """
-        super().__init__(allias, ip)
+        super().__init__(allias, ip, port)
         self.os = "Windows"
 
     def process_data(self, data: bytes, conn: socket.socket) -> None:
@@ -124,14 +123,15 @@ class WindowsMachine(Machine):
 class MacMachine(Machine):
     """Class for Mac machine."""
 
-    def __init__(self, allias: str, ip: str) -> None:
+    def __init__(self, allias: str, ip: str, port: int) -> None:
         """Initialize Mac machine.
 
         Args:
             allias (str): name of machine
             ip (str): machine IP address
+            port (int): machine port
         """
-        super().__init__(allias, ip)
+        super().__init__(allias, ip, port)
         self.os = "MacOS"
 
     def process_data(self, data: bytes, conn: socket.socket) -> None:

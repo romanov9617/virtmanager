@@ -11,6 +11,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
+import asyncpg
+
 from src.database.base import DatabaseBase
 from src.exceptions import database as custom_exceptions
 
@@ -45,3 +47,39 @@ class Monitor(DatabaseBase):
         self.base_path_to_query = "src/database/analysis_queries/"
         if not self.base_path_to_query:
             raise custom_exceptions.QueryPathDoesNotProvidedError
+
+    async def get_all_processors(self) -> list[asyncpg.Record]:
+        """Get all processors from database.
+
+        Returns:
+            list[asyncpg.Record]: list of processors
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_processors_query = await self._read_file("get_all_processors.sql")
+        processors = await conn.fetch(get_all_processors_query)
+        await conn.close()
+        return processors
+
+    async def get_all_hard_drives(self) -> list[asyncpg.Record]:
+        """Get all hard drives from database.
+
+        Returns:
+            list[asyncpg.Record]: List of hard drives
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_processors_query = await self._read_file("get_all_hard_drives.sql")
+        processors = await conn.fetch(get_all_processors_query)
+        await conn.close()
+        return processors
+
+    async def get_all_memories(self) -> list[asyncpg.Record]:
+        """Get all RAMs from database.
+
+        Returns:
+            list[asyncpg.Record]: List of RAMs
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_processors_query = await self._read_file("get_all_memories.sql")
+        processors = await conn.fetch(get_all_processors_query)
+        await conn.close()
+        return processors

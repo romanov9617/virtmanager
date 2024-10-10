@@ -20,6 +20,10 @@ mypy = "^1.11.2"
 pytest-asyncio = "^0.24.0"
 logger = "^1.4"
 pydantic = "^2.9.2"
+sqlfluff = "^3.2.2"
+uvicorn = "^0.31.1"
+idna = "^3.10"
+prettytable = "^3.11.0"
 
 
 [build-system]
@@ -44,6 +48,7 @@ ignore = [
     "ANN102",  # missing-type-cls
     "COM812",  # missing-trailing-comma
     "ISC001",  # single-line-implicit-string-concatenation
+    "T201",    # print
 ]
 select = ["ALL"]
 

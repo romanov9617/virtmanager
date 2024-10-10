@@ -80,4 +80,4 @@ class Authenticator:
         user = await self.db_manager.get_user_by_username(username)
         if user:
             return dict(user)
-        raise custom_exceptions.UserNotFoundError(username)
+        return None
