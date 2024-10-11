@@ -12,7 +12,9 @@ it will be able to replace FastAPI dependency mechanism.
 from __future__ import annotations
 
 import abc
-from typing import Any, Callable, Self
+from typing import Any, Callable, Self, Sequence
+
+from src.auth import user
 
 
 class Handler(abc.ABC):
@@ -59,6 +61,8 @@ class BaseHandler(Handler):
         handle(self, request) - handle request
     """
 
+    USER = user
+
     def __init__(self) -> None:
         """Initialize handler."""
         self._next_handler: Self | None = None
@@ -94,6 +98,6 @@ class BaseHandler(Handler):
         """Get command should pass."""
         return {}
 
-    def _pre_process_request(self, request: str) -> str | list[str]:
+    def _pre_process_request(self, request: str) -> str | Sequence[str | bool]:
         """Pre process request."""
         return request

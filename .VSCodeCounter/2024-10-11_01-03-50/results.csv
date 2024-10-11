@@ -1,0 +1,56 @@
+"filename", "language", "YAML", "Markdown", "Docker", "Python", "MS SQL", "TOML", "pip requirements", "comment", "blank", "total"
+"/home/romanov-d/code/education/virtmanager/.github/workflows/virtmanager.yml", "YAML", 25, 0, 0, 0, 0, 0, 0, 0, 4, 29
+"/home/romanov-d/code/education/virtmanager/.pre-commit-config.yaml", "YAML", 48, 0, 0, 0, 0, 0, 0, 0, 7, 55
+"/home/romanov-d/code/education/virtmanager/Dockerfile", "Docker", 0, 0, 7, 0, 0, 0, 0, 0, 4, 11
+"/home/romanov-d/code/education/virtmanager/README.md", "Markdown", 0, 1, 0, 0, 0, 0, 0, 0, 0, 1
+"/home/romanov-d/code/education/virtmanager/main.py", "Python", 0, 0, 0, 6, 0, 0, 0, 0, 4, 10
+"/home/romanov-d/code/education/virtmanager/megalinter.yml", "YAML", 58, 0, 0, 0, 0, 0, 0, 7, 2, 67
+"/home/romanov-d/code/education/virtmanager/poetry.lock", "TOML", 0, 0, 0, 0, 0, 933, 0, 1, 73, 1007
+"/home/romanov-d/code/education/virtmanager/pyproject.toml", "TOML", 0, 0, 0, 0, 0, 56, 0, 0, 11, 67
+"/home/romanov-d/code/education/virtmanager/requirements.txt", "pip requirements", 0, 0, 0, 0, 0, 0, 40, 0, 1, 41
+"/home/romanov-d/code/education/virtmanager/src/__init__.py", "Python", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"/home/romanov-d/code/education/virtmanager/src/abstract/__init__.py", "Python", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"/home/romanov-d/code/education/virtmanager/src/abstract/chain.py", "Python", 0, 0, 0, 74, 0, 0, 0, 0, 26, 100
+"/home/romanov-d/code/education/virtmanager/src/auth.py", "Python", 0, 0, 0, 63, 0, 0, 0, 0, 21, 84
+"/home/romanov-d/code/education/virtmanager/src/bus.py", "Python", 0, 0, 0, 28, 0, 0, 0, 0, 13, 41
+"/home/romanov-d/code/education/virtmanager/src/cli/__init__.py", "Python", 0, 0, 0, 7, 0, 0, 0, 0, 2, 9
+"/home/romanov-d/code/education/virtmanager/src/cli/auth.py", "Python", 0, 0, 0, 49, 0, 0, 0, 0, 17, 66
+"/home/romanov-d/code/education/virtmanager/src/cli/base.py", "Python", 0, 0, 0, 38, 0, 0, 0, 0, 15, 53
+"/home/romanov-d/code/education/virtmanager/src/cli/cli.py", "Python", 0, 0, 0, 40, 0, 0, 0, 0, 14, 54
+"/home/romanov-d/code/education/virtmanager/src/cli/connection.py", "Python", 0, 0, 0, 6, 0, 0, 0, 0, 6, 12
+"/home/romanov-d/code/education/virtmanager/src/cli/root/__init__.py", "Python", 0, 0, 0, 10, 0, 0, 0, 0, 2, 12
+"/home/romanov-d/code/education/virtmanager/src/cli/root/create.py", "Python", 0, 0, 0, 143, 0, 0, 0, 0, 30, 173
+"/home/romanov-d/code/education/virtmanager/src/cli/root/delete.py", "Python", 0, 0, 0, 21, 0, 0, 0, 0, 12, 33
+"/home/romanov-d/code/education/virtmanager/src/cli/root/permission.py", "Python", 0, 0, 0, 6, 0, 0, 0, 0, 6, 12
+"/home/romanov-d/code/education/virtmanager/src/cli/root/root.py", "Python", 0, 0, 0, 22, 0, 0, 0, 0, 9, 31
+"/home/romanov-d/code/education/virtmanager/src/cli/root/show.py", "Python", 0, 0, 0, 11, 0, 0, 0, 0, 10, 21
+"/home/romanov-d/code/education/virtmanager/src/cli/show.py", "Python", 0, 0, 0, 6, 0, 0, 0, 0, 6, 12
+"/home/romanov-d/code/education/virtmanager/src/config.py", "Python", 0, 0, 0, 28, 0, 0, 0, 0, 12, 40
+"/home/romanov-d/code/education/virtmanager/src/database/__init__.py", "Python", 0, 0, 0, 14, 0, 0, 0, 0, 5, 19
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_hard_drives.sql", "MS SQL", 0, 0, 0, 0, 8, 0, 0, 0, 1, 9
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_memories.sql", "MS SQL", 0, 0, 0, 0, 8, 0, 0, 0, 1, 9
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_processors.sql", "MS SQL", 0, 0, 0, 0, 9, 0, 0, 0, 1, 10
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_enabled_machines.sql", "MS SQL", 0, 0, 0, 0, 3, 0, 0, 0, 1, 4
+"/home/romanov-d/code/education/virtmanager/src/database/base.py", "Python", 0, 0, 0, 37, 0, 0, 0, 0, 13, 50
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_db.sql", "MS SQL", 0, 0, 0, 0, 121, 0, 0, 0, 13, 134
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_machine.sql", "MS SQL", 0, 0, 0, 0, 47, 0, 0, 0, 10, 57
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_user.sql", "MS SQL", 0, 0, 0, 0, 2, 0, 0, 0, 0, 2
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/get_user_by_username.sql", "MS SQL", 0, 0, 0, 0, 4, 0, 0, 0, 1, 5
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/seed.sql", "MS SQL", 0, 0, 0, 0, 17, 0, 0, 0, 5, 22
+"/home/romanov-d/code/education/virtmanager/src/database/manager.py", "Python", 0, 0, 0, 82, 0, 0, 0, 0, 24, 106
+"/home/romanov-d/code/education/virtmanager/src/database/monitor.py", "Python", 0, 0, 0, 64, 0, 0, 0, 0, 22, 86
+"/home/romanov-d/code/education/virtmanager/src/enums.py", "Python", 0, 0, 0, 10, 0, 0, 0, 0, 8, 18
+"/home/romanov-d/code/education/virtmanager/src/exceptions/__init__.py", "Python", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"/home/romanov-d/code/education/virtmanager/src/exceptions/auth.py", "Python", 0, 0, 0, 11, 0, 0, 0, 0, 7, 18
+"/home/romanov-d/code/education/virtmanager/src/exceptions/database.py", "Python", 0, 0, 0, 16, 0, 0, 0, 0, 10, 26
+"/home/romanov-d/code/education/virtmanager/src/machine/__init__.py", "Python", 0, 0, 0, 5, 0, 0, 0, 0, 2, 7
+"/home/romanov-d/code/education/virtmanager/src/machine/creator.py", "Python", 0, 0, 0, 64, 0, 0, 0, 0, 23, 87
+"/home/romanov-d/code/education/virtmanager/src/machine/product.py", "Python", 0, 0, 0, 109, 0, 0, 0, 0, 38, 147
+"/home/romanov-d/code/education/virtmanager/src/schemas/__init__.py", "Python", 0, 0, 0, 4, 0, 0, 0, 0, 2, 6
+"/home/romanov-d/code/education/virtmanager/src/schemas/machine.py", "Python", 0, 0, 0, 52, 0, 0, 0, 0, 22, 74
+"/home/romanov-d/code/education/virtmanager/src/schemas/user.py", "Python", 0, 0, 0, 24, 0, 0, 0, 0, 16, 40
+"/home/romanov-d/code/education/virtmanager/src/utils.py", "Python", 0, 0, 0, 17, 0, 0, 0, 0, 9, 26
+"/home/romanov-d/code/education/virtmanager/tests/conftest.py", "Python", 0, 0, 0, 12, 0, 0, 0, 0, 5, 17
+"/home/romanov-d/code/education/virtmanager/tests/unit/database/test_database.py", "Python", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"/home/romanov-d/code/education/virtmanager/tests/unit/test_auth.py", "Python", 0, 0, 0, 33, 0, 0, 0, 0, 11, 44
+"Total", "-", 131, 1, 7, 1115, 219, 989, 40, 8, 561, 3071

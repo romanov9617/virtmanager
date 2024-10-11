@@ -31,11 +31,13 @@ class CLI(base.BasePasserHandler):
         Returns:
             Any: result of command or None
         """
-        while (request := input(">>> ")) != "exit":
+        msg = f"{self.USER if self.USER else ''} >>> "
+        while (request := input(msg)) not in {"exit", "end", "quit"}:
             if request.strip() and request.split()[0] in self.command_should_pass:
                 await self.handle(request)
             else:
                 print("Unknown command")
+            msg = f"{self.USER if self.USER else ''} >>> "
 
     @property
     def command_should_pass(self) -> dict[str | None, Callable | Self]:
@@ -45,9 +47,9 @@ class CLI(base.BasePasserHandler):
             dict[str, Callable]: command should pass and corresponding handler
         """
         return {
-            "auth": auth.AuthCommandHandler,
+            "login": auth.AuthCommandHandler,
+            "logout": auth.LogoutCommandHandler,
             "connect": connection.ConnectCommandHandler,
-            "disconnect": connection.DisconnectCommandHandler,
             "show": show.ShowCommandHandler,
             "root": root.RootCommandHandler,
         }

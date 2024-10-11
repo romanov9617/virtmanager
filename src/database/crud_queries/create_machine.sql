@@ -1,8 +1,8 @@
 
 WITH
 	machine_ids as (
-	INSERT INTO public.machine (allias, ip, port)
-	VALUES ($1, $2, $3)
+	INSERT INTO public.machine (allias, ip, port, os)
+	VALUES ($1, $2, $3, $10)
 	RETURNING id as machine_id_
 	),
 

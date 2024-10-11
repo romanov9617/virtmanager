@@ -4,8 +4,10 @@ from __future__ import annotations
 
 import bcrypt
 
+from src.abstract import singletone
 from src.database.manager import Manager
 from src.exceptions import auth as custom_exceptions
+from src.schemas import user as user_schema
 
 
 class Encryptor:
@@ -17,7 +19,7 @@ class Encryptor:
     """
 
     @staticmethod
-    def hash_password(password: str, salt: str | None = None) -> str:
+    def hash_password(password: str, salt: str | None = None) -> tuple[str, str]:
         """Hash password.
 
         Args:
@@ -31,7 +33,7 @@ class Encryptor:
             raise custom_exceptions.PasswordDoesNotPresentError
         salt = salt or bcrypt.gensalt()
         hashed_password = bcrypt.hashpw(password.encode("utf-8"), salt)
-        return hashed_password.encode("utf-8")
+        return hashed_password, salt
 
     @staticmethod
     def check_password(password: str, hashed_password: str) -> bool:
@@ -61,7 +63,7 @@ class Authenticator:
         self.encryptor = Encryptor()
         self.db_manager = Manager()
 
-    async def authenticate(self, username: str, password: str) -> bool:
+    async def authenticate(self, username: str, password: str) -> User | None:
         """Check if user exists and password is correct.
 
         Args:
@@ -72,12 +74,60 @@ class Authenticator:
             bool: True if user exists and password is correct, else False
         """
         user = await self._get_user_by_username(username)
-        if user:
-            return self.encryptor.check_password(password, user["password"])
-        return False
+        if user and self.encryptor.check_password(password, user["password"]):
+            return user_schema.UserReadSchema(**user)
+        return None
 
     async def _get_user_by_username(self, username: str) -> dict[str, str] | None:
         user = await self.db_manager.get_user_by_username(username)
         if user:
             return dict(user)
         return None
+
+
+class User(singletone.Singletone):
+    """User class."""
+
+    def __init__(self) -> None:
+        """Initialize user."""
+        self.username = ""
+        self.is_superuser = False
+        self.machines_admin: list[user_schema.MachineSchemaBase] = []
+        self.machines_allowed: list[user_schema.MachineSchemaBase] = []
+        self.machines_denied: list[user_schema.MachineSchemaBase] = []
+        self.machines_authorized: list[user_schema.MachineSchemaBase] = []
+
+    def update(self, data: user_schema.UserReadSchema) -> None:
+        """Update user data.
+
+        Args:
+            data (user_schema.UserUpdateSchema): user data
+        """
+        if data.is_superuser:
+            self.is_superuser = data.is_superuser
+        if data.username:
+            self.username = data.username
+        if data.machines_admin:
+            self.machines_admin = data.machines_admin
+        if data.machines_allowed:
+            self.machines_allowed = data.machines_allowed
+        if data.machines_denied:
+            self.machines_denied = data.machines_denied
+        if data.machines_authorized:
+            self.machines_authorized = data.machines_authorized
+
+    def downgrade(self) -> None:
+        """Downgrade user data."""
+        self.username = ""
+        self.is_superuser = False
+        self.machines_admin = []
+        self.machines_allowed = []
+        self.machines_denied = []
+        self.machines_authorized = []
+
+    def __str__(self) -> str:
+        """String representation of user."""
+        return f"{self.username}"
+
+
+user = User()

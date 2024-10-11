@@ -83,3 +83,73 @@ class Monitor(DatabaseBase):
         processors = await conn.fetch(get_all_processors_query)
         await conn.close()
         return processors
+
+    async def get_all_machines(self) -> list[asyncpg.Record]:
+        """Get all machines from database.
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_machines_query = await self._read_file("get_all_machines.sql")
+        machines = await conn.fetch(get_all_machines_query)
+        await conn.close()
+        return machines
+
+    async def get_machine_by_allias(self, allias: str) -> list[asyncpg.Record]:
+        """Get machine by allias from database.
+
+        Args:
+            allias (str): Allias of machine
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_machine_by_allias_query = await self._read_file("get_machine_by_allias.sql")
+        machines = await conn.fetchrow(get_machine_by_allias_query, allias)
+        await conn.close()
+        return machines
+
+    async def get_machine_by_ip(self, ip: str) -> list[asyncpg.Record]:
+        """Get machine by ip from database.
+
+        Args:
+            ip (str): IP of machine
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_machine_by_ip_query = await self._read_file("get_machine_by_ip.sql")
+        machines = await conn.fetch(get_machine_by_ip_query, ip)
+        await conn.close()
+        return machines
+
+    async def get_all_users(self) -> list[asyncpg.Record]:
+        """Get all users from database.
+
+        Returns:
+            list[asyncpg.Record]: List of users
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_users_query = await self._read_file("get_all_users.sql")
+        users = await conn.fetch(get_all_users_query)
+        await conn.close()
+        return users
+
+    async def get_allowed_machines(self, *args: list[str]) -> list[asyncpg.Record]:
+        """Get allowed machines from database.
+
+        Args:
+            *args (list[str]): username
+
+        Returns:
+            list[asyncpg.Record]: List of allowed machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_allowed_machines_query = await self._read_file("get_allowed_machines.sql")
+        username = args[0]
+        allowed_machines = await conn.fetch(get_allowed_machines_query, username)
+        await conn.close()
+        return allowed_machines

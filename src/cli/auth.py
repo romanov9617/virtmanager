@@ -43,7 +43,9 @@ class AuthPasswordHandler(chain.BaseHandler):
             str | None: desicion if user is authorized or not
         """
         user = self._pre_process_request(request)
-        if await self.authenticator.authenticate(user.username, user.password):
+        user = await self.authenticator.authenticate(user.username, user.password)
+        if user:
+            self.USER.update(user)
             print(f"User {user.username} authorized")
             return "Authorized"
         print("Wrong username or password")
@@ -63,3 +65,31 @@ class AuthPasswordHandler(chain.BaseHandler):
             dict[str, Callable]: command should pass and corresponding handler
         """
         return {"--password": self}
+
+
+class LogoutCommandHandler(base.BasePasserHandler):
+    """Handler for logout param."""
+
+    @property
+    def command_should_pass(self) -> dict[str | None, Callable | Self]:
+        """Property - dict with command should pass and corresponding handler.
+
+        Returns:
+            dict[str, Callable]: command should pass and corresponding handler
+        """
+        return {
+            None: self,
+        }
+
+    async def handle(self, request: str | None = None) -> str | None:  # noqa: ARG002
+        """Handle logout.
+
+        Args:
+            request (str | None): None. Need to accord with base class
+
+        Returns:
+            str | None: None. Log while function is working
+        """
+        if self.USER.username:
+            self.USER.downgrade()
+        print("User logged out")

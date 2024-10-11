@@ -31,6 +31,7 @@ class UserReadSchema(UserSchemaBase):
     Full information about user.
     """
 
+    is_superuser: bool = False
     created_at: datetime
     updated_at: datetime | None = None
     machines_authorized: list[MachineSchemaBase] = []

@@ -3,12 +3,16 @@
 Realized Factory pattern.
 """
 
+from __future__ import annotations
+
 import abc
+from typing import TYPE_CHECKING
 
-from pydantic import BaseModel
-
+from src.database.manager import Manager
 from src.machine import product
-from src.schemas import machine
+
+if TYPE_CHECKING:
+    from src.schemas import machine
 
 
 class Creator(abc.ABC):
@@ -21,18 +25,37 @@ class Creator(abc.ABC):
 
     def __init__(self, data: machine.MachineCreateSchema) -> None:
         """Initialize creator."""
-        self.allias = data.allias
-        self.ip = data.ip
-        self.port = data.port
+        self.data = data
+        self.manager = Manager()
 
     @abc.abstractmethod
-    def factory_method(self, data: BaseModel) -> product.Machine:
+    def factory_method(self) -> product.Machine:
         """Abstract method for creating machine."""
 
-    def create_machine(self, data: BaseModel) -> product.Machine:
+    async def create_machine(self, only_object: bool = False) -> product.Machine:  # noqa: FBT001, FBT002
         """Base logic for creating machine."""
         print("Creating machine...")
-        return self.factory_method(data)
+        machine_data = self._prepare_machine_data(self.data)
+        if not only_object:
+            await self.manager.create_machine(*machine_data)
+        print("Machine created")
+        return self.factory_method(self.data)
+
+    def _prepare_machine_data(
+        self, data: machine.MachineCreateSchema
+    ) -> list[str, list[str | int]]:
+        return [
+            data.allias,
+            data.ip,
+            data.port,
+            data.hard_drives,
+            data.hard_drives_usages,
+            data.processors,
+            data.processors_usages,
+            data.memories,
+            data.memories_usages,
+            data.os,
+        ]
 
 
 class UbuntuCreator(Creator):

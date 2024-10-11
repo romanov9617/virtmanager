@@ -7,18 +7,21 @@ Realized Factory pattern.
 from __future__ import annotations
 
 import abc
-import socket
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from asyncio import StreamReader, StreamWriter
 
 
 class MachineInterface(abc.ABC):
     """Abstract class for machine."""
 
     @abc.abstractmethod
-    async def listen(self) -> None:
+    async def listen(self, reader: StreamReader, writer: StreamWriter) -> None:
         """Abstract method for listening from server."""
 
     @abc.abstractmethod
-    def process_data(self, data: bytes, conn: socket.socket) -> None:
+    def process_data(self, data: bytes, writer: StreamWriter) -> None:
         """Process data from server."""
 
 
@@ -42,30 +45,29 @@ class Machine(MachineInterface):
         """String representation of machine."""
         return f"{self.allias} {self.ip}:{self.port} {self.os}"
 
-    async def listen(self) -> None:
-        """Base method for listning from server."""
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.bind((self.ip, self.port))
-            while True:
-                s.listen()
-                conn, addr = s.accept()
-                with conn:
-                    print(f"Connected by {addr}")
-                    data = conn.recv(1024)
-                    if data:
-                        print(f"Received {data!r}")
-                        self.process_data(data, conn)
+    async def listen(self, reader: StreamReader, writer: StreamWriter) -> None:
+        """Base method for listning from server.
 
-    def process_data(self, data: bytes, conn: socket.socket) -> None:
+        Args:
+            reader (asyncio.StreamReader): network connection
+            writer (asyncio.StreamWriter): network connection
+        """
+        while True:
+            data = await reader.read(1024)
+            if not data:
+                break
+            self.process_data(data, writer)
+
+    def process_data(self, data: bytes, writer: StreamWriter) -> None:
         """Basic method for processing data from server.
 
         At default, it returns received data back again (echo)
 
         Args:
             data (bytes): some data from server
-            conn (socket.socket): network connection
+            writer (asyncio.StreamWriter): network connection
         """
-        conn.sendall(data)
+        writer.write(data)
 
 
 class UbuntuMachine(Machine):
@@ -82,16 +84,16 @@ class UbuntuMachine(Machine):
         super().__init__(allias, ip, port)
         self.os = "Ubuntu"
 
-    def process_data(self, data: bytes, conn: socket.socket) -> None:
+    def process_data(self, data: bytes, writer: StreamWriter) -> None:
         """Process data from server.
 
         Ubuntu machine returns uppercase data back again
 
         Args:
             data (bytes): some data from server
-            conn (socket.socket): network connection
+            writer (asyncio.StreamWriter): network connection
         """
-        conn.sendall(data.upper())
+        writer.write(data.upper())
 
 
 class WindowsMachine(Machine):
@@ -108,16 +110,16 @@ class WindowsMachine(Machine):
         super().__init__(allias, ip, port)
         self.os = "Windows"
 
-    def process_data(self, data: bytes, conn: socket.socket) -> None:
+    def process_data(self, data: bytes, writer: StreamWriter) -> None:
         """Process data from server.
 
         Windows machine returns titled case data back again
 
         Args:
             data (bytes): some data from server
-            conn (socket.socket): network connection
+            writer (asyncio.StreamWriter): network connection
         """
-        conn.sendall(data.title())
+        writer.write(data.title())
 
 
 class MacMachine(Machine):
@@ -134,13 +136,13 @@ class MacMachine(Machine):
         super().__init__(allias, ip, port)
         self.os = "MacOS"
 
-    def process_data(self, data: bytes, conn: socket.socket) -> None:
+    def process_data(self, data: bytes, writer: StreamWriter) -> None:
         """Process data from server.
 
         Mac machine returns reversed data back again
 
         Args:
             data (bytes): some data from server
-            conn (socket.socket): network connection
+            writer (asyncio.StreamWriter): network connection
         """
-        conn.sendall(data[::-1])
+        writer.write(data[::-1])

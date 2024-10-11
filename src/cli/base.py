@@ -43,9 +43,8 @@ class BasePasserHandler(chain.BaseHandler):
         if command not in self.command_should_pass:
             return None
 
-        handler = await self.command_should_pass[command]()
+        handler = self.command_should_pass[command]()
         await self.set_next(handler)
-        print(f"Command: {command}")
         return await super().handle(*args)
 
     def _pre_process_request(self, request: str) -> list[str]:

@@ -1,7 +1,7 @@
 """Module describes bus."""
 
 import abc
-import socket
+import asyncio
 
 from logger import logger
 
@@ -31,10 +31,24 @@ class Bus(BusInterface):
     """
 
     @staticmethod
-    async def send_command(command: str, machine: Machine) -> None:
-        """Send command to virtual machine."""
-        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((machine.ip, machine.port))
-            s.sendall(command.encode())
-            data = s.recv(1024)
-            logger.info(f"{machine} responce: {data.decode()!r}")
+    async def send_commands(machine_ip: str, machine_port: int) -> None:
+        """Send commands to virtual machine.
+
+        Args:
+            machine_ip (str): machine IP address
+            machine_port (int): machine port
+        """
+        reader, writer = await asyncio.open_connection(machine_ip, machine_port)
+
+        while True:
+            command = input()
+            if command == "exit":
+                break
+            writer.write(command.encode())
+            await writer.drain()
+            response = await reader.read(1024)
+            logger.info(f"Machine {machine_ip}:{machine_port} -> { response.decode() }")
+
+        writer.close()
+        await writer.wait_closed()
+        print("Writer closed")

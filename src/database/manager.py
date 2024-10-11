@@ -6,11 +6,10 @@ It is responsible for making CRUD queries in database.
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Sequence
 
 import asyncpg
 
-from src import enums
 from src.database.base import DatabaseBase
 from src.exceptions import database as custom_exceptions
 
@@ -67,26 +66,15 @@ class Manager(DatabaseBase):
         await conn.execute(seed_handbooks_query)
         await conn.close()
 
-    async def create_user(
-        self,
-        username: str,
-        password: str,
-        salt: str,
-        is_superuser: enums.SuperUserEnum = enums.SuperUserEnum.USER,
-    ) -> None:
+    async def create_user(self, *args: Sequence[str]) -> None:
         """Create new user in database.
 
         Args:
-            username (str): user name
-            password (str): user password
-            salt (str): user salt
-            is_superuser (bool): is superuser
+            *args (list[str]): user data in list
         """
         conn = await asyncpg.connect(self._config.DB_URL)
-        create_user_query = await self._read_file("add_user.sql")
-        await conn.execute(
-            create_user_query, username, password, salt, is_superuser.value
-        )
+        create_user_query = await self._read_file("create_user.sql")
+        await conn.execute(create_user_query, *args)
         await conn.close()
 
     async def get_user_by_username(self, username: str) -> dict[str, str] | None:
@@ -104,7 +92,7 @@ class Manager(DatabaseBase):
         await conn.close()
         return user
 
-    async def create_machine(self, *args: list[str]) -> None:
+    async def create_machine(self, *args: Sequence[str]) -> None:
         """Create new machine in database.
 
         Args:
@@ -113,4 +101,37 @@ class Manager(DatabaseBase):
         conn = await asyncpg.connect(self._config.DB_URL)
         create_machine_query = await self._read_file("create_machine.sql")
         await conn.execute(create_machine_query, *args)
+        await conn.close()
+
+    async def delete_machine(self, *args: Sequence[str]) -> None:
+        """Create new machine in database.
+
+        Args:
+            *args (list[str]): machine data
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        delete_machine_query = await self._read_file("delete_machine.sql")
+        await conn.execute(delete_machine_query, *args)
+        await conn.close()
+
+    async def grant_access(self, *args: Sequence[str]) -> None:
+        """Grant permission to user.
+
+        Args:
+            *args (list[str]): permission data
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        grant_permission_query = await self._read_file("grant_user_access.sql")
+        await conn.execute(grant_permission_query, *args)
+        await conn.close()
+
+    async def revoke_user_access(self, *args: Sequence[str]) -> None:
+        """Revoke permission from user.
+
+        Args:
+            *args (list[str]): permission data
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        revoke_permission_query = await self._read_file("revoke_user_access.sql")
+        await conn.execute(revoke_permission_query, *args)
         await conn.close()

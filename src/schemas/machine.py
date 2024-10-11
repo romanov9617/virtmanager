@@ -47,19 +47,21 @@ class MachineSchemaBase(pydantic.BaseModel):
     """Pydantic Machine base schema."""
 
     allias: str
-    is_enabled: bool
+    is_enabled: bool = True
     ip: str
     port: int
-    created_at: datetime
-    updated_at: datetime | None = None
+    os: str
 
 
 class MachineCreateSchema(MachineSchemaBase):
     """Pydantic Machine schema to create."""
 
     processors: list[UUID] = []
+    processors_usages: list[int] = []
     memories: list[UUID] = []
+    memories_usages: list[int] = []
     hard_drives: list[UUID] = []
+    hard_drives_usages: list[int] = []
 
 
 class MachineReadSchema(MachineSchemaBase):
@@ -68,3 +70,5 @@ class MachineReadSchema(MachineSchemaBase):
     processors: list[ProcessorSchemaBase] = []
     memories: list[MemorySchemaBase] = []
     hard_drives: list[HardDriveSchemaBase] = []
+    created_at: datetime
+    updated_at: datetime | None = None
