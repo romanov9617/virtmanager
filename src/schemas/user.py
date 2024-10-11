@@ -2,11 +2,15 @@
 
 from __future__ import annotations
 
-from datetime import datetime  # noqa: TCH003
+from typing import TYPE_CHECKING
+from uuid import UUID  # noqa: TCH003
 
 import pydantic
 
 from src.schemas.machine import MachineSchemaBase  # noqa: TCH001
+
+if TYPE_CHECKING:
+    from datetime import datetime
 
 
 class UserSchemaBase(pydantic.BaseModel):
@@ -31,6 +35,7 @@ class UserReadSchema(UserSchemaBase):
     Full information about user.
     """
 
+    id: UUID
     is_superuser: bool = False
     created_at: datetime
     updated_at: datetime | None = None

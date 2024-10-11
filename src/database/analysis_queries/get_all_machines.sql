@@ -4,7 +4,7 @@ SELECT
     ip,
     port,
     is_enabled,
-    created_at.
+    created_at,
     updated_at,
     os
 FROM public.machine

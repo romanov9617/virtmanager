@@ -8,6 +8,7 @@ from __future__ import annotations
 import abc
 from typing import TYPE_CHECKING
 
+from src.database import monitor
 from src.database.manager import Manager
 from src.machine import product
 
@@ -27,16 +28,17 @@ class Creator(abc.ABC):
         """Initialize creator."""
         self.data = data
         self.manager = Manager()
+        self.monitor = monitor.Monitor()
 
     @abc.abstractmethod
     def factory_method(self) -> product.Machine:
         """Abstract method for creating machine."""
 
-    async def create_machine(self, only_object: bool = False) -> product.Machine:  # noqa: FBT001, FBT002
+    async def create_machine(self) -> product.Machine:
         """Base logic for creating machine."""
         print("Creating machine...")
         machine_data = self._prepare_machine_data(self.data)
-        if not only_object:
+        if not await self.monitor.get_machine_by_allias(self.data.allias):
             await self.manager.create_machine(*machine_data)
         print("Machine created")
         return self.factory_method(self.data)

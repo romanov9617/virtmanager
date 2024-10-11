@@ -135,3 +135,28 @@ class Manager(DatabaseBase):
         revoke_permission_query = await self._read_file("revoke_user_access.sql")
         await conn.execute(revoke_permission_query, *args)
         await conn.close()
+
+    async def connect_to_machine(self, args: Sequence[str]) -> None:
+        """Connect user to machine.
+
+        Args:
+            args (list[str]): permission data
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        connect_to_machine_query = await self._read_file("connect_to_machine.sql")
+        session_id = await conn.fetchrow(connect_to_machine_query, *args)
+        await conn.close()
+        return session_id
+
+    async def disconnect_from_machine(self, args: Sequence[str]) -> None:
+        """Disconnect user from machine.
+
+        Args:
+            args (list[str]): permission data
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        disconnect_from_machine_query = await self._read_file(
+            "disconnect_from_machine.sql"
+        )
+        await conn.execute(disconnect_from_machine_query, *args)
+        await conn.close()

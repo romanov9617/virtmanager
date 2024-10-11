@@ -153,3 +153,71 @@ class Monitor(DatabaseBase):
         allowed_machines = await conn.fetch(get_allowed_machines_query, username)
         await conn.close()
         return allowed_machines
+
+    async def get_all_machines_with_components(self) -> list[asyncpg.Record]:
+        """Get all machines with components from database.
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_machines_with_components_query = await self._read_file(
+            "get_all_machines_with_components.sql"
+        )
+        machines = await conn.fetch(get_machines_with_components_query)
+        await conn.close()
+        return machines
+
+    async def get_all_machines_with_characteristics(self) -> list[asyncpg.Record]:
+        """Get all machines with characteristics from database.
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_machines_with_characteristics_query = await self._read_file(
+            "get_all_machines_with_characteristics.sql"
+        )
+        machines = await conn.fetch(get_machines_with_characteristics_query)
+        await conn.close()
+        return machines
+
+    async def get_all_machines_user_admin(
+        self, *args: list[str]
+    ) -> list[asyncpg.Record]:
+        """Get all machines from database.
+
+        Args:
+            *args (list[str]): username
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_machines_user_admin_query = await self._read_file(
+            "get_all_machines_user_admin.sql"
+        )
+        username = args[0]
+        machines = await conn.fetch(get_all_machines_user_admin_query, username)
+        await conn.close()
+        return machines
+
+    async def get_all_machines_user_allowed(
+        self, *args: list[str]
+    ) -> list[asyncpg.Record]:
+        """Get all machines from database.
+
+        Args:
+            *args (list[str]): username
+
+        Returns:
+            list[asyncpg.Record]: List of machines
+        """
+        conn = await asyncpg.connect(self._config.DB_URL)
+        get_all_machines_user_allowed_query = await self._read_file(
+            "get_all_machines_user_allowed.sql"
+        )
+        username = args[0]
+        machines = await conn.fetch(get_all_machines_user_allowed_query, username)
+        await conn.close()
+        return machines

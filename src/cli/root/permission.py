@@ -17,7 +17,7 @@ class GrantCommnandHandler(chain.BaseHandler):
         if not request:
             return None
         params = self._pre_process_request(request)
-        params = await self.prepare_data(params)
+        params = await self.prepare_data(*params)
         await db_manager.grant_access(*params)
         return None
 

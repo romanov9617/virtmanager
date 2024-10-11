@@ -72,3 +72,40 @@ class MachineReadSchema(MachineSchemaBase):
     hard_drives: list[HardDriveSchemaBase] = []
     created_at: datetime
     updated_at: datetime | None = None
+
+
+class MachineFullInfoSchema(MachineSchemaBase):
+    """Pydantic Machine full info schema."""
+
+    id: UUID
+    processor_id: UUID
+    processor_num_nuclears: int
+    processor_frequency: int
+    processor_max_temperature: int
+    processor_service_life_end: datetime
+    processor_warantee_period_end: datetime
+    processor_usage_percent: int
+
+    memory_id: UUID
+    memory_type: str
+    memory_capacity: int
+    memory_frequency: int
+    memory_service_life_end: datetime
+    memory_warantee_period_end: datetime
+    memory_usage_percent: int
+
+    hard_drive_id: UUID
+    hard_drive_type: str
+    hard_drive_capacity: int
+    hard_drive_frequency: int
+    hard_drive_service_life_end: datetime
+    hard_drive_warantee_period_end: datetime
+    hard_drive_usage_percent: int
+
+
+class MachineCharacteristicSchema(pydantic.BaseModel):
+    """Pydantic Machine characteristic schema."""
+
+    processor_frequency_usage: int
+    hard_drive_capacity_usage: int
+    memory_capacity_usage: int

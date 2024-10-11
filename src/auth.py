@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
+from typing import TYPE_CHECKING
+
 import bcrypt
 
 from src.abstract import singletone
 from src.database.manager import Manager
 from src.exceptions import auth as custom_exceptions
 from src.schemas import user as user_schema
+
+if TYPE_CHECKING:
+    from uuid import UUID
 
 
 class Encryptor:
@@ -90,6 +95,7 @@ class User(singletone.Singletone):
 
     def __init__(self) -> None:
         """Initialize user."""
+        self.id: UUID | None = None
         self.username = ""
         self.is_superuser = False
         self.machines_admin: list[user_schema.MachineSchemaBase] = []
@@ -103,6 +109,8 @@ class User(singletone.Singletone):
         Args:
             data (user_schema.UserUpdateSchema): user data
         """
+        if data.id:
+            self.id = data.id
         if data.is_superuser:
             self.is_superuser = data.is_superuser
         if data.username:
@@ -118,6 +126,7 @@ class User(singletone.Singletone):
 
     def downgrade(self) -> None:
         """Downgrade user data."""
+        self.id = None
         self.username = ""
         self.is_superuser = False
         self.machines_admin = []

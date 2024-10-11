@@ -35,7 +35,7 @@ build-backend = "poetry.core.masonry.api"
 python_version = "3.12"
 disable_error_code = "import-untyped"
 warn_unused_configs = true
-ignore_errors = true
+ignore_errors = true  # TODO: remove this. DEADLINE TIC-TAC
 
 
 [tool.ruff]
