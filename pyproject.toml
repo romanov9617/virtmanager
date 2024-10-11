@@ -24,6 +24,7 @@ uvicorn = "^0.31.1"
 idna = "^3.10"
 prettytable = "^3.11.0"
 bcrypt = "^4.2.0"
+py-bcrypt = "^0.4"
 
 
 [build-system]
