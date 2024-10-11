@@ -25,7 +25,7 @@ class RootShowHandler(base.BasePasserHandler):
 
 
 class RootShowMachineHandler(base.BasePasserHandler):
-    """Handler for CLI command `show machine`."""
+    """Handler for CLI command `show machines."""
 
     @property
     def command_should_pass(self) -> dict[str, chain.BaseHandler]:

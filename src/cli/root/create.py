@@ -61,7 +61,7 @@ class RootCreateMachineHandler(chain.BaseHandler):
         name = input("Enter machine name: ")
         ip_address = input("Enter machine IP address: ")
         port = int(input("Enter machine port: "))
-        os = input("Enter machine OS: ")
+        os = input("Enter machine OS [mac, windows, ubuntu]: ")
         hard_drives, hard_drives_usages = await self._choose_hard_drives(db_monitor)
         processors, processors_usages = await self._choose_processors(db_monitor)
         memories, memories_usages = await self._choose_memories(db_monitor)
