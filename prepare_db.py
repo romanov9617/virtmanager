@@ -11,3 +11,6 @@ def seed_db() -> None:
     manager = Manager()
     asyncio.run(manager.create_database())
     asyncio.run(manager.create_user("admin", *Encryptor.hash_password("admin"), True))  # noqa: FBT003
+
+
+seed_db()

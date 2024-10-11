@@ -20,6 +20,8 @@ def make_table(data: list[Record]) -> prettytable.PrettyTable:
         prettytable.PrettyTable: _description_
     """
     table = prettytable.PrettyTable()
+    if not data:
+        return table
     table.field_names = data[0].keys()
     table.add_rows(data)
     return table
