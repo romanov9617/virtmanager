@@ -1,0 +1,117 @@
+Date : 2024-10-11 12:59:19
+Directory : /home/romanov-d/code/education/virtmanager
+Total : 66 files,  2959 codes, 8 comments, 659 blanks, all 3626 lines
+
+Languages
++------------------+------------+------------+------------+------------+------------+
+| language         | files      | code       | comment    | blank      | total      |
++------------------+------------+------------+------------+------------+------------+
+| Python           |         37 |      1,471 |          0 |        501 |      1,972 |
+| TOML             |          2 |        990 |          1 |         84 |      1,075 |
+| MS SQL           |         21 |        319 |          0 |         56 |        375 |
+| YAML             |          3 |        131 |          7 |         13 |        151 |
+| pip requirements |          1 |         40 |          0 |          1 |         41 |
+| Docker           |          1 |          7 |          0 |          4 |         11 |
+| Markdown         |          1 |          1 |          0 |          0 |          1 |
++------------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                          | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                             |         66 |      2,959 |          8 |        659 |      3,626 |
+| . (Files)                                                                                                     |          8 |      1,157 |          8 |        104 |      1,269 |
+| .github                                                                                                       |          1 |         25 |          0 |          4 |         29 |
+| .github/workflows                                                                                             |          1 |         25 |          0 |          4 |         29 |
+| src                                                                                                           |         54 |      1,732 |          0 |        534 |      2,266 |
+| src (Files)                                                                                                   |          6 |        204 |          0 |         76 |        280 |
+| src/abstract                                                                                                  |          3 |         92 |          0 |         36 |        128 |
+| src/cli                                                                                                       |         11 |        512 |          0 |        157 |        669 |
+| src/cli (Files)                                                                                               |          6 |        218 |          0 |         75 |        293 |
+| src/cli/root                                                                                                  |          5 |        294 |          0 |         82 |        376 |
+| src/database                                                                                                  |         25 |        632 |          0 |        143 |        775 |
+| src/database (Files)                                                                                          |          4 |        313 |          0 |         87 |        400 |
+| src/database/analysis_queries                                                                                 |         11 |        116 |          0 |         23 |        139 |
+| src/database/crud_queries                                                                                     |         10 |        203 |          0 |         33 |        236 |
+| src/exceptions                                                                                                |          3 |         28 |          0 |         18 |         46 |
+| src/machine                                                                                                   |          3 |        181 |          0 |         64 |        245 |
+| src/schemas                                                                                                   |          3 |         83 |          0 |         40 |        123 |
+| tests                                                                                                         |          3 |         45 |          0 |         17 |         62 |
+| tests (Files)                                                                                                 |          1 |         12 |          0 |          5 |         17 |
+| tests/unit                                                                                                    |          2 |         33 |          0 |         12 |         45 |
+| tests/unit (Files)                                                                                            |          1 |         33 |          0 |         11 |         44 |
+| tests/unit/database                                                                                           |          1 |          0 |          0 |          1 |          1 |
++---------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| filename                                                                                                      | language         | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+
+| /home/romanov-d/code/education/virtmanager/.github/workflows/virtmanager.yml                                  | YAML             |         25 |          0 |          4 |         29 |
+| /home/romanov-d/code/education/virtmanager/.pre-commit-config.yaml                                            | YAML             |         48 |          0 |          7 |         55 |
+| /home/romanov-d/code/education/virtmanager/Dockerfile                                                         | Docker           |          7 |          0 |          4 |         11 |
+| /home/romanov-d/code/education/virtmanager/README.md                                                          | Markdown         |          1 |          0 |          0 |          1 |
+| /home/romanov-d/code/education/virtmanager/main.py                                                            | Python           |         13 |          0 |          6 |         19 |
+| /home/romanov-d/code/education/virtmanager/megalinter.yml                                                     | YAML             |         58 |          7 |          2 |         67 |
+| /home/romanov-d/code/education/virtmanager/poetry.lock                                                        | TOML             |        933 |          1 |         73 |      1,007 |
+| /home/romanov-d/code/education/virtmanager/pyproject.toml                                                     | TOML             |         57 |          0 |         11 |         68 |
+| /home/romanov-d/code/education/virtmanager/requirements.txt                                                   | pip requirements |         40 |          0 |          1 |         41 |
+| /home/romanov-d/code/education/virtmanager/src/__init__.py                                                    | Python           |          1 |          0 |          1 |          2 |
+| /home/romanov-d/code/education/virtmanager/src/abstract/__init__.py                                           | Python           |          1 |          0 |          1 |          2 |
+| /home/romanov-d/code/education/virtmanager/src/abstract/chain.py                                              | Python           |         76 |          0 |         28 |        104 |
+| /home/romanov-d/code/education/virtmanager/src/abstract/singletone.py                                         | Python           |         15 |          0 |          7 |         22 |
+| /home/romanov-d/code/education/virtmanager/src/auth.py                                                        | Python           |        109 |          0 |         30 |        139 |
+| /home/romanov-d/code/education/virtmanager/src/bus.py                                                         | Python           |         39 |          0 |         16 |         55 |
+| /home/romanov-d/code/education/virtmanager/src/cli/__init__.py                                                | Python           |          7 |          0 |          2 |          9 |
+| /home/romanov-d/code/education/virtmanager/src/cli/auth.py                                                    | Python           |         72 |          0 |         24 |         96 |
+| /home/romanov-d/code/education/virtmanager/src/cli/base.py                                                    | Python           |         37 |          0 |         15 |         52 |
+| /home/romanov-d/code/education/virtmanager/src/cli/cli.py                                                     | Python           |         42 |          0 |         14 |         56 |
+| /home/romanov-d/code/education/virtmanager/src/cli/connection.py                                              | Python           |         54 |          0 |         14 |         68 |
+| /home/romanov-d/code/education/virtmanager/src/cli/root/__init__.py                                           | Python           |         10 |          0 |          2 |         12 |
+| /home/romanov-d/code/education/virtmanager/src/cli/root/create.py                                             | Python           |        143 |          0 |         30 |        173 |
+| /home/romanov-d/code/education/virtmanager/src/cli/root/permission.py                                         | Python           |         71 |          0 |         21 |         92 |
+| /home/romanov-d/code/education/virtmanager/src/cli/root/root.py                                               | Python           |         33 |          0 |         12 |         45 |
+| /home/romanov-d/code/education/virtmanager/src/cli/root/show.py                                               | Python           |         37 |          0 |         17 |         54 |
+| /home/romanov-d/code/education/virtmanager/src/cli/show.py                                                    | Python           |          6 |          0 |          6 |         12 |
+| /home/romanov-d/code/education/virtmanager/src/config.py                                                      | Python           |         28 |          0 |         12 |         40 |
+| /home/romanov-d/code/education/virtmanager/src/database/__init__.py                                           | Python           |         14 |          0 |          5 |         19 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_hard_drives.sql              | MS SQL           |          8 |          0 |          1 |          9 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_machines.sql                 | MS SQL           |         10 |          0 |          1 |         11 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_machines_with_components.sql | MS SQL           |         39 |          0 |         13 |         52 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_memories.sql                 | MS SQL           |          8 |          0 |          1 |          9 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_processors.sql               | MS SQL           |          9 |          0 |          1 |         10 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_users.sql                    | MS SQL           |          7 |          0 |          1 |          8 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_allowed_connections.sql          | MS SQL           |          0 |          0 |          1 |          1 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_allowed_machines.sql             | MS SQL           |         12 |          0 |          1 |         13 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_enabled_machines.sql             | MS SQL           |          3 |          0 |          1 |          4 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_machine_by_allias.sql            | MS SQL           |          9 |          0 |          1 |         10 |
+| /home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_machine_by_ip.sql                | MS SQL           |         11 |          0 |          1 |         12 |
+| /home/romanov-d/code/education/virtmanager/src/database/base.py                                               | Python           |         37 |          0 |         13 |         50 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/connect_to_machine.sql                   | MS SQL           |          3 |          0 |          0 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_db.sql                            | MS SQL           |        121 |          0 |         13 |        134 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_machine.sql                       | MS SQL           |         47 |          0 |         10 |         57 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_user.sql                          | MS SQL           |          2 |          0 |          1 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/delete_machine.sql                       | MS SQL           |          2 |          0 |          1 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/disconnect_from_machine.sql              | MS SQL           |          3 |          0 |          0 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/get_user_by_username.sql                 | MS SQL           |          4 |          0 |          1 |          5 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/grant_user_access.sql                    | MS SQL           |          2 |          0 |          1 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/revoke_user_access.sql                   | MS SQL           |          2 |          0 |          1 |          3 |
+| /home/romanov-d/code/education/virtmanager/src/database/crud_queries/seed.sql                                 | MS SQL           |         17 |          0 |          5 |         22 |
+| /home/romanov-d/code/education/virtmanager/src/database/manager.py                                            | Python           |        129 |          0 |         33 |        162 |
+| /home/romanov-d/code/education/virtmanager/src/database/monitor.py                                            | Python           |        133 |          0 |         36 |        169 |
+| /home/romanov-d/code/education/virtmanager/src/enums.py                                                       | Python           |         10 |          0 |          8 |         18 |
+| /home/romanov-d/code/education/virtmanager/src/exceptions/__init__.py                                         | Python           |          1 |          0 |          1 |          2 |
+| /home/romanov-d/code/education/virtmanager/src/exceptions/auth.py                                             | Python           |         11 |          0 |          7 |         18 |
+| /home/romanov-d/code/education/virtmanager/src/exceptions/database.py                                         | Python           |         16 |          0 |         10 |         26 |
+| /home/romanov-d/code/education/virtmanager/src/machine/__init__.py                                            | Python           |          5 |          0 |          2 |          7 |
+| /home/romanov-d/code/education/virtmanager/src/machine/creator.py                                             | Python           |         67 |          0 |         22 |         89 |
+| /home/romanov-d/code/education/virtmanager/src/machine/product.py                                             | Python           |        109 |          0 |         40 |        149 |
+| /home/romanov-d/code/education/virtmanager/src/schemas/__init__.py                                            | Python           |          4 |          0 |          2 |          6 |
+| /home/romanov-d/code/education/virtmanager/src/schemas/machine.py                                             | Python           |         52 |          0 |         23 |         75 |
+| /home/romanov-d/code/education/virtmanager/src/schemas/user.py                                                | Python           |         27 |          0 |         15 |         42 |
+| /home/romanov-d/code/education/virtmanager/src/utils.py                                                       | Python           |         17 |          0 |          9 |         26 |
+| /home/romanov-d/code/education/virtmanager/tests/conftest.py                                                  | Python           |         12 |          0 |          5 |         17 |
+| /home/romanov-d/code/education/virtmanager/tests/unit/database/test_database.py                               | Python           |          0 |          0 |          1 |          1 |
+| /home/romanov-d/code/education/virtmanager/tests/unit/test_auth.py                                            | Python           |         33 |          0 |         11 |         44 |
+| Total                                                                                                         |                  |      2,959 |          8 |        659 |      3,626 |
++---------------------------------------------------------------------------------------------------------------+------------------+------------+------------+------------+------------+

@@ -1,0 +1,35 @@
+"filename", "language", "Python", "TOML", "MS SQL", "comment", "blank", "total"
+"/home/romanov-d/code/education/virtmanager/main.py", "Python", 7, 0, 0, 0, 2, 9
+"/home/romanov-d/code/education/virtmanager/pyproject.toml", "TOML", 0, 1, 0, 0, 0, 1
+"/home/romanov-d/code/education/virtmanager/src/abstract/chain.py", "Python", 2, 0, 0, 0, 2, 4
+"/home/romanov-d/code/education/virtmanager/src/abstract/singletone.py", "Python", 15, 0, 0, 0, 7, 22
+"/home/romanov-d/code/education/virtmanager/src/auth.py", "Python", 46, 0, 0, 0, 9, 55
+"/home/romanov-d/code/education/virtmanager/src/bus.py", "Python", 11, 0, 0, 0, 3, 14
+"/home/romanov-d/code/education/virtmanager/src/cli/auth.py", "Python", 23, 0, 0, 0, 7, 30
+"/home/romanov-d/code/education/virtmanager/src/cli/base.py", "Python", -1, 0, 0, 0, 0, -1
+"/home/romanov-d/code/education/virtmanager/src/cli/cli.py", "Python", 2, 0, 0, 0, 0, 2
+"/home/romanov-d/code/education/virtmanager/src/cli/connection.py", "Python", 48, 0, 0, 0, 8, 56
+"/home/romanov-d/code/education/virtmanager/src/cli/root/delete.py", "Python", -21, 0, 0, 0, -12, -33
+"/home/romanov-d/code/education/virtmanager/src/cli/root/permission.py", "Python", 65, 0, 0, 0, 15, 80
+"/home/romanov-d/code/education/virtmanager/src/cli/root/root.py", "Python", 11, 0, 0, 0, 3, 14
+"/home/romanov-d/code/education/virtmanager/src/cli/root/show.py", "Python", 26, 0, 0, 0, 7, 33
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_machines.sql", "MS SQL", 0, 0, 10, 0, 1, 11
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_machines_with_components.sql", "MS SQL", 0, 0, 39, 0, 13, 52
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_all_users.sql", "MS SQL", 0, 0, 7, 0, 1, 8
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_allowed_connections.sql", "MS SQL", 0, 0, 0, 0, 1, 1
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_allowed_machines.sql", "MS SQL", 0, 0, 12, 0, 1, 13
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_machine_by_allias.sql", "MS SQL", 0, 0, 9, 0, 1, 10
+"/home/romanov-d/code/education/virtmanager/src/database/analysis_queries/get_machine_by_ip.sql", "MS SQL", 0, 0, 11, 0, 1, 12
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/connect_to_machine.sql", "MS SQL", 0, 0, 3, 0, 0, 3
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/create_user.sql", "MS SQL", 0, 0, 0, 0, 1, 1
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/delete_machine.sql", "MS SQL", 0, 0, 2, 0, 1, 3
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/disconnect_from_machine.sql", "MS SQL", 0, 0, 3, 0, 0, 3
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/grant_user_access.sql", "MS SQL", 0, 0, 2, 0, 1, 3
+"/home/romanov-d/code/education/virtmanager/src/database/crud_queries/revoke_user_access.sql", "MS SQL", 0, 0, 2, 0, 1, 3
+"/home/romanov-d/code/education/virtmanager/src/database/manager.py", "Python", 47, 0, 0, 0, 9, 56
+"/home/romanov-d/code/education/virtmanager/src/database/monitor.py", "Python", 69, 0, 0, 0, 14, 83
+"/home/romanov-d/code/education/virtmanager/src/machine/creator.py", "Python", 3, 0, 0, 0, -1, 2
+"/home/romanov-d/code/education/virtmanager/src/machine/product.py", "Python", 0, 0, 0, 0, 2, 2
+"/home/romanov-d/code/education/virtmanager/src/schemas/machine.py", "Python", 0, 0, 0, 0, 1, 1
+"/home/romanov-d/code/education/virtmanager/src/schemas/user.py", "Python", 3, 0, 0, 0, -1, 2
+"Total", "-", 356, 1, 100, 0, 98, 555
