@@ -46,6 +46,9 @@ python3 main.py
 ## Структура базы данных
 
 
+![image](https://github.com/user-attachments/assets/a1db1abd-81e9-4b07-8676-f8d2db0dfa37)
+
+
 ## Особенности
 
 1. Приложение работает с CLI-интерфейсом.
